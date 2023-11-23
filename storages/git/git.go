@@ -4,14 +4,11 @@ import (
 	"bytes"
 	"errors"
 	"io"
-	"io/ioutil"
 	"os"
 	"os/user"
 	"strings"
 	"sync"
 	"time"
-
-	sshagent "github.com/xanzy/ssh-agent"
 
 	"github.com/go-git/go-billy/v5/memfs"
 	"github.com/go-git/go-git/v5"
@@ -22,6 +19,7 @@ import (
 	"github.com/go-git/go-git/v5/plumbing/transport/http"
 	sshGit "github.com/go-git/go-git/v5/plumbing/transport/ssh"
 	"github.com/go-git/go-git/v5/storage/memory"
+	sshagent "github.com/xanzy/ssh-agent"
 	"golang.org/x/crypto/ssh"
 
 	"github.com/leopoggiani/terraform-backend-git/backend"
@@ -83,7 +81,7 @@ func authSSH() (*sshGit.PublicKeys, error) {
 		pemFile = home + "/.ssh/id_rsa"
 	}
 
-	pem, err := ioutil.ReadFile(pemFile)
+	pem, err := os.ReadFile(pemFile)
 	if err != nil {
 		return nil, err
 	}
@@ -432,7 +430,7 @@ func (storageSession *storageSession) readFile(path string) ([]byte, error) {
 	}
 	defer file.Close()
 
-	return ioutil.ReadAll(file)
+	return io.ReadAll(file)
 }
 
 // writeFile write this buf to the file in the local working tree.

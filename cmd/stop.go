@@ -12,7 +12,7 @@ import (
 var stopCmd = &cobra.Command{
 	Use:   "stop",
 	Short: "Stop the currently running backend",
-	Run: func(cmd *cobra.Command, args []string) {
+	Run: func(_ *cobra.Command, _ []string) {
 		if err := pid.StopPidFile(); err != nil {
 			log.Fatal(err)
 		}

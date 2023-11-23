@@ -4,7 +4,7 @@ package server
 import (
 	"crypto/subtle"
 	"errors"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -133,7 +133,7 @@ func handleFunc(response http.ResponseWriter, request *http.Request) {
 	case "LOCK":
 		log.Printf("Locking state in %s", metadata.Params.String())
 
-		body, err := ioutil.ReadAll(request.Body)
+		body, err := io.ReadAll(request.Body)
 		if err != nil {
 			handler.clientError(err)
 			return
@@ -148,7 +148,7 @@ func handleFunc(response http.ResponseWriter, request *http.Request) {
 	case "UNLOCK":
 		log.Printf("Unlocking state in %s", metadata.Params.String())
 
-		body, err := ioutil.ReadAll(request.Body)
+		body, err := io.ReadAll(request.Body)
 		if err != nil {
 			handler.clientError(err)
 			return
@@ -175,7 +175,7 @@ func handleFunc(response http.ResponseWriter, request *http.Request) {
 	case http.MethodPost:
 		log.Printf("Saving state to %s", metadata.Params.String())
 
-		body, err := ioutil.ReadAll(request.Body)
+		body, err := io.ReadAll(request.Body)
 		if err != nil {
 			handler.clientError(err)
 			return

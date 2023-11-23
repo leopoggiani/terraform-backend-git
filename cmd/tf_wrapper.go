@@ -18,7 +18,7 @@ var terraformWrapperCmd = &cobra.Command{
 	DisableFlagsInUseLine: true,
 	SilenceUsage:          true,
 	Args:                  cobra.ArbitraryArgs,
-	RunE: func(cmd *cobra.Command, args []string) error {
+	RunE: func(_ *cobra.Command, args []string) error {
 		tf := viper.GetString("wrapper.tf.bin")
 
 		tfCommand := exec.Command(tf, args...)
