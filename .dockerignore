@@ -1,0 +1,7 @@
+.gitignore
+.github
+test/**
+docs/**
+LICENSE
+CHANGELOG.md
+README.md
