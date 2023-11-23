@@ -23,7 +23,7 @@ var gitBackendCmd = &cobra.Command{
 	Use:   "git",
 	Short: "Start backend in Git storage mode and execute the wrapper",
 	Long:  "It will also generate " + gitHTTPBackendConfigPath + " in current working directory pointing to this backend",
-	PersistentPreRun: func(cmd *cobra.Command, args []string) {
+	PersistentPreRun: func(_ *cobra.Command, _ []string) {
 		cd := viper.GetString("git.dir")
 		if cd != "" {
 			if err := os.Chdir(cd); err != nil {
@@ -89,7 +89,7 @@ terraform {
 
 		go server.Start()
 	},
-	PersistentPostRun: func(cmd *cobra.Command, args []string) {
+	PersistentPostRun: func(_ *cobra.Command, _ []string) {
 		if err := os.Remove(gitHTTPBackendConfigPath); err != nil {
 			log.Fatal(err)
 		}

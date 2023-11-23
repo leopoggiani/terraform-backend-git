@@ -2,7 +2,6 @@ package pid
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"strconv"
@@ -11,7 +10,7 @@ import (
 var pidFile = os.TempDir() + "/.terraform-backend-git.pid"
 
 func readPid() (int, error) {
-	piddata, err := ioutil.ReadFile(pidFile)
+	piddata, err := os.ReadFile(pidFile)
 	if err != nil {
 		if os.IsNotExist(err) {
 			return -1, nil
@@ -54,7 +53,7 @@ func LockPidFile() error {
 		return fmt.Errorf("another pid already running: %d", pid)
 	}
 
-	return ioutil.WriteFile(pidFile, []byte(fmt.Sprintf("%d", os.Getpid())), 0664)
+	return os.WriteFile(pidFile, []byte(fmt.Sprintf("%d", os.Getpid())), 0664)
 }
 
 func StopPidFile() error {

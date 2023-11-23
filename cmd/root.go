@@ -23,7 +23,7 @@ var rootCmd = &cobra.Command{
 	Use:   "terraform-backend-git",
 	Short: "Terraform HTTP backend implementation that uses Git as storage",
 	// will use known storage types in this repository and start a local HTTP server
-	Run: func(cmd *cobra.Command, args []string) {
+	Run: func(_ *cobra.Command, _ []string) {
 		if err := pid.LockPidFile(); err != nil {
 			log.Fatal(err)
 		}

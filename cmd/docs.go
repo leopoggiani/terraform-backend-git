@@ -16,7 +16,7 @@ var docsCmd = &cobra.Command{
 	Use:   "docs",
 	Short: "Generate docs",
 	Long:  `Uses Cobra to generate CLI docs`,
-	Run: func(cmd *cobra.Command, args []string) {
+	Run: func(_ *cobra.Command, _ []string) {
 		cwd, err := os.Getwd()
 		if err != nil {
 			log.Fatal(err)
