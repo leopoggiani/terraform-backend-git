@@ -1,16 +1,28 @@
-FROM golang:1.19 AS build
+FROM golang:1.21 AS build
 
-ARG RELEASE_STRING=dev
-ENV IMPORT_PATH="github.com/plumber-cd/terraform-backend-git/cmd"
-WORKDIR /go/delivery
-COPY . .
-RUN mkdir bin && go build \
-    -ldflags "-X ${IMPORT_PATH}.Version=${RELEASE_STRING}" \
-    -o ./bin ./...
+WORKDIR /go/src/app
 
-FROM debian:bullseye
+COPY ./backend ./backend
+COPY ./cmd ./cmd
+COPY ./crypt ./crypt
+COPY ./pid ./pid
+COPY ./server ./server
+COPY ./storages ./storages
+COPY ./types ./types
+
+COPY ./go.mod ./
+COPY ./main.go ./
+
+RUN mkdir bin && go mod tidy && CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o ./bin/ .
+
+FROM alpine:3.18
 
 # Include CA Certs to resolve TLS handshakes
-RUN DEBIAN_FRONTEND="noninteractive" apt-get update && apt-get install -y ca-certificates && apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apk update && \
+    apk add --no-cache ca-certificates && \
+    rm -rf /var/cache/apk/*
 
-COPY --from=build /go/delivery/bin /usr/bin
+WORKDIR /usr/bin
+COPY --from=build /go/src/app/bin/terraform-backend-git /usr/bin/terraform-backend-git
+
+CMD ["terraform-backend-git"]
