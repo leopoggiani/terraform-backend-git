@@ -7,7 +7,7 @@ import (
 	"golang.org/x/exp/maps"
 	"golang.org/x/exp/slices"
 
-	"github.com/plumber-cd/terraform-backend-git/crypt"
+	"github.com/leopoggiani/terraform-backend-git/crypt"
 )
 
 func getEncryptionProvider() (crypt.EncryptionProvider, error) {

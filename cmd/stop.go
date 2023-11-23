@@ -5,7 +5,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/plumber-cd/terraform-backend-git/pid"
+	"github.com/leopoggiani/terraform-backend-git/pid"
 )
 
 // stopCmd will stop the server started via rootCmd via it's pid file

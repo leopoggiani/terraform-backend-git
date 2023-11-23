@@ -8,7 +8,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/plumber-cd/terraform-backend-git/types"
+	"github.com/leopoggiani/terraform-backend-git/types"
 )
 
 // KnownStorageTypes map storage types to storage clients before starting the server so backend knows what's supported

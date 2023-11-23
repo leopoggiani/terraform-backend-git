@@ -7,7 +7,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	"github.com/plumber-cd/terraform-backend-git/cmd/discovery"
+	"github.com/leopoggiani/terraform-backend-git/cmd/discovery"
 )
 
 // terraformWrapperCmd will pass all arguments to terraform,

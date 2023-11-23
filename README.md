@@ -46,17 +46,17 @@ Git as Terraform backend? Seriously? I know, might sound like a stupid idea at f
 
 #### Brew
 
-Installation with [Brew](https://github.com/plumber-cd/terraform-backend-git/issues/8) is coming later.
+Installation with [Brew](https://github.com/leopoggiani/terraform-backend-git/issues/8) is coming later.
 
 #### From Release
 
-Download a binary from [Releases](https://github.com/plumber-cd/terraform-backend-git/releases). All binaries built with GitHub Actions and you can inspect [how](.github/workflows/release.yml).
+Download a binary from [Releases](https://github.com/leopoggiani/terraform-backend-git/releases). All binaries built with GitHub Actions and you can inspect [how](.github/workflows/release.yml).
 
 Don't forget to add it to your `PATH`.
 
 #### As Docker Image
 
-See https://github.com/plumber-cd/terraform-backend-git/pkgs/container/terraform-backend-git.
+See https://github.com/leopoggiani/terraform-backend-git/pkgs/container/terraform-backend-git.
 
 ```bash
 docker pull ghcr.io/plumber-cd/terraform-backend-git:latest
@@ -82,7 +82,7 @@ steps:
 You can build it yourself, of course (and Go made it really easy):
 
 ```bash
-go install github.com/plumber-cd/terraform-backend-git@${version}
+go install github.com/leopoggiani/terraform-backend-git@${version}
 ```
 
 Don't forget to add it to your `PATH`.

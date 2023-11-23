@@ -24,7 +24,7 @@ import (
 	"github.com/go-git/go-git/v5/storage/memory"
 	"golang.org/x/crypto/ssh"
 
-	"github.com/plumber-cd/terraform-backend-git/backend"
+	"github.com/leopoggiani/terraform-backend-git/backend"
 )
 
 func init() {

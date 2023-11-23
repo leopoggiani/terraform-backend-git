@@ -41,7 +41,7 @@ jobs:
         env:
           GOOS: ${{ matrix.os }}
           GOARCH: ${{ matrix.arch }}
-        run: go build -ldflags="-X 'github.com/plumber-cd/terraform-backend-git/cmd.Version=${{ env.RELEASE_STRING }}'" -o build/terraform-backend-git-${{ matrix.os }}-${{ matrix.arch }}${{ env.FILE_EXTENSION }}
+        run: go build -ldflags="-X 'github.com/leopoggiani/terraform-backend-git/cmd.Version=${{ env.RELEASE_STRING }}'" -o build/terraform-backend-git-${{ matrix.os }}-${{ matrix.arch }}${{ env.FILE_EXTENSION }}
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
